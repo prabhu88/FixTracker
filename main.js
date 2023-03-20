@@ -21,7 +21,7 @@
  */
 
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow,ipcMain,Menu} = require('electron');
 const isDev = require('electron-is-dev');
 const path = require('path');
 const url = require('url');
@@ -30,8 +30,7 @@ const url = require('url');
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 function createWindow() {    
-    if (!isDev) {
-        console.log('called');
+    if (!isDev) {        
         require(path.join(__dirname, 'build-server/server'));
     }
 
@@ -40,11 +39,31 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,    
         },
         icon: path.join(__dirname,'public/logo.ico')
     });
 
+    const menu = Menu.buildFromTemplate([
+        {
+          label: 'Main Menu',
+          submenu: [
+            {
+              click: () => mainWindow.webContents.send('update-counter', 'Home'),
+              label: 'Home',
+            },
+            {
+              click: () => mainWindow.webContents.send('update-counter', 'Profile'),
+              label: 'Profile',
+            },
+            {
+                click: () => app.quit(),
+                label: 'Quit',
+            }
+          ]
+        }
+    ])
+    Menu.setApplicationMenu(menu)
     // and load the index.html of the app.
     mainWindow.loadURL(isDev ? 'http://localhost:3000' : url.format({
         pathname: path.join(__dirname, 'build/index.html'),
@@ -53,7 +72,7 @@ function createWindow() {
     }));
 
     // Open the DevTools.
-    // mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools({ mode: 'detach' })
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
@@ -84,3 +103,15 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+ipcMain.on('informed', (event, arg) => {    
+    console.log(arg);
+    let colors = (arg.split('-'))[0]
+    mainWindow.setTitle(arg)
+    mainWindow.setBackgroundColor(colors)    
+});
+ipcMain.on('QUIT', () => {    
+    app.quit();
+});
+ipcMain.on('update-counter',(eveent,arg)=>{
+
+})

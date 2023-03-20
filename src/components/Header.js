@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components"
 
+
 export const HeaderDiv = styled.header`
     background-color: ${({ theme }) => theme.colors.header};
     color : ${({theme}) => theme.colors.text };    

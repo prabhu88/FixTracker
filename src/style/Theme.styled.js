@@ -1,19 +1,16 @@
 export const light = {
     name: "white-theme",
     colors: {
-        header: "hsl(0, 0%, 93%)",
-        background: "hsl(0, 0%, 100%)",
-        footer: "hsl(0, 1%, 38%)",
-        text: "hsl(0, 1%, 16%)",        
-        quoteBgc: "hsl(60, 40%, 100%)",
-        quoteTitle: "hsl(0, 1%, 38%)",
-        quoteBody: "hsl(0, 1%, 38%);",
-        quoteBorder: "hsl(0, 0%, 87%)",
-        border: "hsl(0, 0%, 87%)",
-    },
-    sidebar: {
-        background:""
-    }
+        header: "#ededed",
+        background: "#ffffff",
+        footer: "#626060",
+        text: "#292828",        
+        quoteBgc: "#ffffff",
+        quoteTitle: "#626060",
+        quoteBody: "#626060",
+        quoteBorder: "#dedede",
+        border: "#dedede",
+    },    
 };
 
 export const dark = {

@@ -30,14 +30,14 @@ a {
 a:hover{
     color : ${({theme}) => theme.colors.text };
 }
-.s-layout {
+.layout {
     display: flex;
     width: 100%;
     min-height: calc(100vh-90px);   
     color : ${({theme}) => theme.colors.background };     
 }
   
-.s-layout__content {
+.layout_content {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,34 +93,34 @@ a:hover{
     width: 100%;
 }
   
-.s-sidebar__nav-link {
+.sidebar_link {
     position: relative;
     display: inline-block;
     width: 100%;
     height: 4em;
 }
   
-.s-sidebar__nav-link em {
+.sidebar_link em {
     position: absolute;
     top: 50%;
     left: 4em;
     transform: translateY(-50%);
 }
   
-.s-sidebar__nav-link:hover {
+.sidebar_link:hover {
     background : ${({theme}) => theme.colors.quoteBgc }    
 }
   
-.s-sidebar__nav-link > i {
+.sidebar_link > i {
     position: absolute;
     top: 0;
     left: 0;
     display: inline-block;
     width: 4em;
-    height: 4em;
+    height: 3em;
 }
   
-  .s-sidebar__nav-link > i::before {
+  .sidebar_link > i::before {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -129,7 +129,7 @@ a:hover{
   
   /* Mobile First */
   @media (min-width: 42em) {
-    .s-layout__content {
+    .layout_content {
       margin-left: 4em;
     }  
     /* Sidebar */
@@ -151,7 +151,7 @@ a:hover{
   }
   
   @media (min-width: 68em) {
-    .s-layout__content {
+    .layout_content {
       margin-left: 15em;
     }
   
